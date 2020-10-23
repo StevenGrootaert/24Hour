@@ -16,7 +16,9 @@ namespace Data
         public string CommentText { get; set; }
 
         [Required]
-        public User CommentAuthor { get; set; }
+        //public User CommentAuthor { get; set; } // why is this error?
+
+        public string Author { get; set; }
 
         [Required]
         public Post CommentedPost { get; set; }
