@@ -21,4 +21,5 @@ namespace Data
         [Required]
         public string UserPassword { get; set; }
     }
+    
 }
