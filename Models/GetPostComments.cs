@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services
+namespace Models
 {
     class GetPostComments
     {
+        public int PostId { get; set; }
+        public string Title { get; set; }
     }
 }

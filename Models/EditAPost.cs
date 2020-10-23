@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Posts
 {
     public class EditAPost
     {
+        public int PostId { get; set; }
+        public string Title { get; set; }
+        public string Text { get; set; }
     }
 }
