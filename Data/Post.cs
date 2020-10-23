@@ -21,8 +21,8 @@ namespace Data
         [Required]
         public string PostText { get; set; }
 
-        [Required]
-        public User PostAuthor { get; set; }  // I feel like if we tied the owner ID to the Post we can generate the author without this... 
+        //[Required]
+        ///public User PostAuthor { get; set; }  // I feel like if we tied the owner ID to the Post we can generate the author without this... 
 
         /* I feel like these would be good to have but not in the prompt... 
          * [Required]
