@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Data;
+using Microsoft.AspNet.Identity;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,15 @@ namespace WebAPI.Controllers
             return commentServices;
         }
 
+
+        //this method is still under review
+        /*
         public IHttpActionResult GetAllComments()
         {
             CommentServices commentServices = CreateCommentServices();
-            var comments = commentServices.GetPostComments();
+            var comments = commentServices.GetPostComments(); 
             return Ok(comments);
         }
+         */
     }
 }
