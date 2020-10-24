@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class CommentServices
+    public class CommentServices
     {
+
     }
 }
