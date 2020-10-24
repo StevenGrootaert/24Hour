@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    class Reply : Comments
+    public class Reply : Comments
     {
         [Required]
         public Comments ReplyComments { get; set; }
