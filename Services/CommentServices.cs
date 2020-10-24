@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
+using Models.Posts;
 
 namespace Data
 {
@@ -28,19 +28,21 @@ namespace Data
         public bool MakeComment(PostCommentOnPost model)
         {
             var entity =
-                new Comments()
+                new Comment()
                 {
-                    Author = _userId,
+                    UserId = _userId,
                     CommentId = model.CommentId,
-                    CommentText = model.Text,
+                    Text = model.Text,
                 };
-            using (var ctx = new ApplicationDbContext()) // should be fixed when identiy model is moved to data layer. 
+            using (var ctx = new ApplicationDbContext()) 
             {
-                ctx.Comment.Add(entity);
+                ctx.Comments.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
+        /*
+         * We don't understand how to do this section.. 
         public IEnumerable<GetPostComments> GetPostComments() // should do this by post id?? 
         {
             using (var ctx = new ApplicationDbContext())
@@ -61,6 +63,7 @@ namespace Data
                 return query.ToArray();
             }
         }
+        */
 
         /*
         public GetCommentReplies GetCommentReplies(int id)
