@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
-    class Reply : Comments
+    public class Reply : Comment
     {
-        [Required]
-        public Comments ReplyComments { get; set; }
-        // I feel like somthing isn't right here - no Key.. what would the key be? OG post that we're commenting on? 
+        [Key]
+        public int ReplyId { get; set; }
+        public Comment ReplyComment { get; set; }
+
     }
 }
