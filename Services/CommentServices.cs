@@ -1,3 +1,10 @@
+﻿using Data;
+using Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -9,62 +16,64 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace Data
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class CommentServices 
     {
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-            // Add custom user claims here
-            return userIdentity;
-        }
-    }
+        private readonly Guid _userId; // somthing seems weird here with the userId
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public CommentServices(Guid userId)
         {
+            _userId = userId;
         }
 
-        public static ApplicationDbContext Create()
+        public bool MakeComment(PostCommentOnPost model)
         {
-            return new ApplicationDbContext();
+            var entity =
+                new Comments()
+                {
+                    Author = _userId,
+                    CommentId = model.CommentId,
+                    CommentText = model.Text,
+                };
+            using (var ctx = new ApplicationDbContext()) // should be fixed when identiy model is moved to data layer. 
+            {
+                ctx.Comment.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        //public DbSet<Like> Likes { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Reply> Replies { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public IEnumerable<GetPostComments> GetPostComments() // should do this by post id?? 
         {
-            modelBuilder
-                .Conventions
-                .Remove<PluralizingTableNameConvention>();
-
-            modelBuilder
-                .Configurations
-                .Add(new IdentityUserLoginConfiguration())
-                .Add(new IdentityUserRoleConfiguration());
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Comments
+                    .Where(e => e.CommentId == e.PostId) // I think I'm finding the comments by postId? 
+                    // comment author == user id
+                    .Select(
+                        e =>
+                        new GetPostComments
+                        {
+                            PostId = e.PostId,
+                            Title = e.Title
+                        }
+                );
+                return query.ToArray();
+            }
         }
-    }
 
-    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
-    {
-        public IdentityUserLoginConfiguration()
+        /*
+        public GetCommentReplies GetCommentReplies(int id)
         {
-            HasKey(iul => iul.UserId);
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Reply
+                    .Single(e => e.)
+            }
         }
-    }
+        */
 
-    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
-    {
-        public IdentityUserRoleConfiguration()
-        {
-            HasKey(iur => iur.UserId);
-        }
     }
 }

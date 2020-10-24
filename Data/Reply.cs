@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
-    public class Reply : Comment
+
+    public class Reply : Comments
     {
         [Key]
         public int ReplyId { get; set; }
