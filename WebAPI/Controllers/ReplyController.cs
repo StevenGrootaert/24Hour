@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+        /*
 namespace WebAPI.Controllers
 {
     [Authorize]
@@ -47,7 +48,6 @@ namespace WebAPI.Controllers
             return Ok();
 
         }
-
         private ReplyService CreateReplyService()
         {
             var authorId = Guid.Parse(User.Identity.GetUserId());
@@ -56,3 +56,4 @@ namespace WebAPI.Controllers
         }
     }
 }
+        */

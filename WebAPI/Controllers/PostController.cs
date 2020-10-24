@@ -1,4 +1,6 @@
-﻿using Services;
+﻿using Microsoft.AspNet.Identity;
+using Models.Posts;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
