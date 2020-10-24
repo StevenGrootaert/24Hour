@@ -77,14 +77,6 @@
       <Project>{620df0fa-e115-463c-8878-0f1de3cd0161}</Project>
       <Name>Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{6152e89a-7cf7-44e9-9d0d-d8c77d8fc691}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebAPI\WebAPI.csproj">
-      <Project>{9baccbfb-2f21-4155-8283-4b76515eea38}</Project>
-      <Name>WebAPI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

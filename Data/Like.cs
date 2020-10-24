@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    class Like
+    public class Like
     {
         [Key]
         public Post LikedPost { get; set; }
