@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Data;
+using Microsoft.AspNet.Identity;
 using Services;
 using System;
 using System.Collections.Generic;

@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
+using Models.Posts;
 
 namespace Data
 {
@@ -28,15 +28,15 @@ namespace Data
         public bool MakeComment(PostCommentOnPost model)
         {
             var entity =
-                new Comments()
+                new Comment()
                 {
-                    Author = _userId,
+                    UserId = _userId,
                     CommentId = model.CommentId,
-                    CommentText = model.Text,
+                    Text = model.Text,
                 };
             using (var ctx = new ApplicationDbContext()) // should be fixed when identiy model is moved to data layer. 
             {
-                ctx.Comment.Add(entity);
+                ctx.Comments.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Data
 {
 
-    public class Reply : Comments
+    public class Reply : Comment
     {
         [Key]
         public int ReplyId { get; set; }
