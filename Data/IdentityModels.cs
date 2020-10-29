@@ -65,6 +65,18 @@ namespace Data
         public IdentityUserRoleConfiguration()
         {
             HasKey(iur => iur.UserId);
+
+            HasKey(iur => iur.UserId);
+
+            HasKey(iur => iur.UserId);
+            HasKey(iur => iur.UserId);
+            HasKey(iur => iur.UserId);
+
+
+
+
+
+
         }
     }
 }
