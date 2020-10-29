@@ -34,13 +34,15 @@ namespace Data
                     CommentId = model.CommentId,
                     Text = model.Text,
                 };
-            using (var ctx = new ApplicationDbContext()) // should be fixed when identiy model is moved to data layer. 
+            using (var ctx = new ApplicationDbContext()) 
             {
                 ctx.Comments.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
+        /*
+         * We don't understand how to do this section.. 
         public IEnumerable<GetPostComments> GetPostComments() // should do this by post id?? 
         {
             using (var ctx = new ApplicationDbContext())
@@ -61,6 +63,7 @@ namespace Data
                 return query.ToArray();
             }
         }
+        */
 
         /*
         public GetCommentReplies GetCommentReplies(int id)
